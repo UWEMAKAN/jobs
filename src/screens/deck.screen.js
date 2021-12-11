@@ -7,8 +7,6 @@ export const DeckScreen = (props) => {
       <Text>DeckScreen</Text>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
