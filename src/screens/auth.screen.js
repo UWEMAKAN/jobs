@@ -1,8 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-paper';
-import { facebookLogin, AuthenticationContext } from '../services';
+import { AuthenticationContext } from '../services';
 import { SafeArea } from '../components';
 
 if (__DEV__) {
@@ -12,9 +12,7 @@ if (__DEV__) {
 }
 
 export const AuthScreen = ({ navigation }) => {
-  console.log('rendering');
-  const { token, setToken } = useContext(AuthenticationContext);
-  const [error, setError] = useState(null);
+  const { token, error, login } = useContext(AuthenticationContext);
 
   const onAuthComplete = () => {
     if (token) {
@@ -35,16 +33,7 @@ export const AuthScreen = ({ navigation }) => {
         style={styles.buttonStyle}
         icon="facebook"
         mode="contained"
-        onPress={() =>
-          facebookLogin()
-            .then((t) => {
-              if (t) {
-                setToken(t);
-                onAuthComplete();
-              }
-            })
-            .catch((err) => setError(err.message))
-        }
+        onPress={() => login()}
       >
         Facebook
       </Button>

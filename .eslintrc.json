@@ -21,6 +21,7 @@
       "react/jsx-filename-extension": "off",
       "object-curly-spacing":"error",
       "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
-      "import/prefer-default-export": "off"
+      "import/prefer-default-export": "off",
+      "default-param-last": "off"
     }
 }

@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { ActivityIndicator } from 'react-native-paper';
-import { SafeArea, Slides } from '../components';
+
+import { SafeArea, Slides, ActivityIndicator } from '../components';
 import { AuthenticationContext } from '../services';
 
 const SLIDE_DATA = [
@@ -31,23 +30,10 @@ export const WelcomeScreen = ({ navigation }) => {
   return (
     <SafeArea>
       {isLoading ? (
-        <ActivityIndicator
-          style={styles.activityIndicatorStyle}
-          size="large"
-          animating={true}
-          color="#4064AC"
-        />
+        <ActivityIndicator />
       ) : (
         <Slides data={SLIDE_DATA} onSlidesComplete={onSlidesComplete} />
       )}
     </SafeArea>
   );
 };
-
-const styles = StyleSheet.create({
-  activityIndicatorStyle: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
