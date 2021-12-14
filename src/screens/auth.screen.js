@@ -16,7 +16,7 @@ export const AuthScreen = ({ navigation }) => {
 
   const onAuthComplete = () => {
     if (token) {
-      navigation.navigate('Main');
+      navigation.navigate('Map');
     }
   };
   useEffect(() => {
