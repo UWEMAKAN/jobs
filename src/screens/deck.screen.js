@@ -1,11 +1,16 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Platform, Dimensions } from 'react-native';
-import { Card, Title } from 'react-native-paper';
+import { Card, Title, Button } from 'react-native-paper';
 import MapView, { Marker } from 'react-native-maps';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import { SafeArea, Swipe, ActivityIndicator } from '../components';
 import { FavoritesContext, JobsContext } from '../services';
+
+// eslint-disable-next-line react/jsx-props-no-spreading
+const locationIcon = (props) => <MaterialIcons name="my-location" {...props} />;
 
 if (__DEV__) {
   // eslint-disable-next-line global-require
@@ -60,7 +65,23 @@ export const DeckScreen = ({ navigation }) => {
   const renderNoMoreCards = () => {
     return (
       <Card>
-        <Title>No More Cards</Title>
+        <Card.Content>
+          <Title style={{ textAlign: 'center' }}>No More Cards</Title>
+          <Button
+            icon={locationIcon}
+            style={{
+              backgroundColor: '#03A9F4',
+              paddingTop: 5,
+              paddingBottom: 5,
+              marginTop: 10,
+            }}
+            mode="contained"
+            onPress={() => navigation.navigate('Map')}
+          >
+            Back to Map
+          </Button>
+          {/* my-location */}
+        </Card.Content>
       </Card>
     );
   };
