@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext, useEffect, useReducer, useState } from 'react';
 import { Button } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
@@ -7,6 +8,12 @@ import styled from 'styled-components/native';
 
 import { SafeArea, ActivityIndicator } from '../components';
 import { JobsContext } from '../services';
+
+if (__DEV__) {
+  // eslint-disable-next-line global-require
+  const whyDidYouRender = require('@welldone-software/why-did-you-render');
+  whyDidYouRender(React);
+}
 
 const SearchIcon = (props) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
@@ -22,8 +29,8 @@ const ButtonContainer = styled.View`
 
 const initialState = {
   region: {
-    longitude: 3.34,
-    latitude: 6.63,
+    longitude: -122,
+    latitude: 37,
     longitudeDelta: 0.04,
     latitudeDelta: 0.09,
   },
@@ -43,12 +50,12 @@ const reducer = (state = {}, action) => {
 
 export const MapScreen = ({ navigation }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapLoaded, setMapLoaded] = useState(true);
   const { searchJobs } = useContext(JobsContext);
 
   const onButtonPress = async () => {
+    navigation.navigate('Deck');
     await searchJobs(state.region);
-    return navigation.navigate('Deck');
   };
 
   useEffect(() => {
@@ -83,6 +90,8 @@ export const MapScreen = ({ navigation }) => {
     </SafeArea>
   );
 };
+
+// MapScreen.whyDidYouRender = true;
 
 const styles = StyleSheet.create({
   container: {
