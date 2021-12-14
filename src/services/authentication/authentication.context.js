@@ -35,15 +35,15 @@ export const AuthenticationProvider = ({ children }) => {
     try {
       const authToken = await facebookLogin();
       await AsyncStorage.setItem('fb_token', authToken);
-      dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: authToken });
+      return dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: authToken });
     } catch (err) {
-      dispatch({ type: FACEBOOK_LOGIN_FAILURE, payload: err.message });
+      return dispatch({ type: FACEBOOK_LOGIN_FAILURE, payload: err.message });
     }
   };
 
   const logout = async () => {
     await AsyncStorage.removeItem('fb_token');
-    dispatch({ type: FACEBOOK_LOGOUT_SUCCESS });
+    return dispatch({ type: FACEBOOK_LOGOUT_SUCCESS });
   };
 
   useEffect(() => {
