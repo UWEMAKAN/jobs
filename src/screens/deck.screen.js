@@ -71,16 +71,20 @@ const isAndroid = Platform.OS === 'android';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export const DeckScreen = ({ navigation }) => {
-  const { zipCodes, isLoading: loadingLocation } = useContext(LocationContext);
+  const {
+    zipCodes,
+    jobTitle,
+    isLoading: loadingLocation,
+  } = useContext(LocationContext);
   const { likeJob } = useContext(FavoritesContext);
   const [state, dispatch] = useReducer(reducer, initialState);
   const { isLoading, jobs } = state;
   const [index, setIndex] = useState(0);
 
-  const startJobSearch = async (code) => {
+  const startJobSearch = async (code, title) => {
     dispatch({ type: JOB_SEARCH_START });
     try {
-      const result = await fetchJobs(code);
+      const result = await fetchJobs(code, title);
       return dispatch({
         type: JOB_SEARCH_SUCCESS,
         payload: result,
@@ -100,10 +104,10 @@ export const DeckScreen = ({ navigation }) => {
   useEffect(() => {
     if (zipCodes.length) {
       if (!jobs[index]) {
-        return startJobSearch(zipCodes[index]);
+        return startJobSearch(zipCodes[index], jobTitle);
       }
     }
-  }, [index, zipCodes, jobs]);
+  }, [index, zipCodes, jobs, jobTitle]);
 
   const renderCard = (job) => {
     const initialRegion = {

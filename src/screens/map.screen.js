@@ -6,7 +6,7 @@ import MapView from 'react-native-maps';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import styled from 'styled-components/native';
 
-import { SafeArea, ActivityIndicator } from '../components';
+import { ActivityIndicator, SafeArea, Search } from '../components';
 import { LocationContext } from '../services';
 
 if (__DEV__) {
@@ -64,6 +64,7 @@ export const MapScreen = ({ navigation }) => {
 
   return (
     <SafeArea header={true} style={styles.container}>
+      <Search icon={SearchIcon} />
       {mapLoaded ? (
         <>
           <MapView

@@ -1,4 +1,5 @@
 export * from './activity-indicator.component';
 export * from './safe-area.component';
+export * from './search.component';
 export * from './slides.component';
 export * from './swipe.component';
