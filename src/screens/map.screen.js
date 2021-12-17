@@ -7,7 +7,7 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import styled from 'styled-components/native';
 
 import { SafeArea, ActivityIndicator } from '../components';
-import { JobsContext } from '../services';
+import { LocationContext } from '../services';
 
 if (__DEV__) {
   // eslint-disable-next-line global-require
@@ -51,11 +51,11 @@ const reducer = (state = {}, action) => {
 export const MapScreen = ({ navigation }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [mapLoaded, setMapLoaded] = useState(true);
-  const { searchJobs } = useContext(JobsContext);
+  const { searchZipCode } = useContext(LocationContext);
 
   const onButtonPress = async () => {
     navigation.navigate('Deck');
-    await searchJobs(state.region);
+    await searchZipCode(state.region);
   };
 
   useEffect(() => {

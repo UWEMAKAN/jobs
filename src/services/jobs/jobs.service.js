@@ -20,10 +20,9 @@ const buildJobsUrl = (zipCode) => {
   return `${JOB_BASE_URL}${query}`;
 };
 
-export const fetchJobs = async (region) => {
+export const fetchJobs = async (zipCode) => {
   try {
-    // const zipCodes = await reverseGeocode(region);
-    // const url = buildJobsUrl(zipCodes[0]);
+    // const url = buildJobsUrl(zipCode);
     // const { data } = await axios.get(url);
     // if (data.error) throw new Error(data.error);
     // return data.results;

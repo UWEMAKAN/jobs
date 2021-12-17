@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { DeckScreen, MapScreen } from '../screens';
 import { ReviewNavigator } from './review.navigator';
-import { FavoritesProvider, JobsProvider } from '../services';
+import { FavoritesProvider, LocationProvider } from '../services';
 
 const TAB_ICON = {
   Review: 'md-eye',
@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 
 export const MainNavigator = () => {
   return (
-    <JobsProvider>
+    <LocationProvider>
       <FavoritesProvider>
         <Tab.Navigator
           initialRouteName="Map"
@@ -41,6 +41,6 @@ export const MainNavigator = () => {
           />
         </Tab.Navigator>
       </FavoritesProvider>
-    </JobsProvider>
+    </LocationProvider>
   );
 };
