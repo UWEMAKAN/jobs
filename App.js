@@ -7,6 +7,4 @@ const App = () => {
   return <Navigator />;
 };
 
-App.whyDidYouRender = true;
-
 export default App;
